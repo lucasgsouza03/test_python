@@ -1,6 +1,7 @@
-# Desemvolvimento de API com Flask
+# Desenvolvimento de API com Flask
 
-Desenvolvido api de calculo de quais notas e moedas tem que ser dada para troco de uma compra.
+
+API de calculo de quais notas e moedas tem que ser dada para troco de uma compra.
 API desenvolvida com python3.6, Flask e mongodb.
 
 ## Table of Contents:
