@@ -1,7 +1,7 @@
 # Desenvolvimento de API com Flask
 
 
-API de calculo de quais notas e moedas tem que ser dada para troco de uma compra.
+API para definir quais notas e moedas tem que ser dada para troco de uma compra.
 API desenvolvida com python3.6, Flask e mongodb.
 
 ## Table of Contents:
@@ -32,7 +32,7 @@ API desenvolvida com python3.6, Flask e mongodb.
 
 - Foi criado um unico endpoint para o calculo do troco.
 - Aguarda um POST contendo um Json no body da request contendo os valores de pagamento e valor da compra.
-- A URL do endpoint é: http://localhost:5000/api/controle_troco . 
+- A URL do endpoint é: http://localhost:5000/api/controle_troco
 - Efetuando a request como POST deve ser passado no body o seguinte Json: {"valor_pago":valor_pago, "valor_total":valor_total}.
 - Efetuando a request como GET apensa retorna um Json informando o metodo usado.
 
