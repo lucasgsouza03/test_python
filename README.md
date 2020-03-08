@@ -8,6 +8,7 @@ API desenvolvida com python3.6, Flask e mongodb.
 
 - [Requisitos](#requisitos)
 - [Setup](#setup)
+- [Start](#start)
 - [API](#api)
 - [Web](#web)
 - [Database](#database)
@@ -26,7 +27,12 @@ API desenvolvida com python3.6, Flask e mongodb.
 - Criar um ambiente virtual usando o virutalenv.
 - Ativar o ambiente virtual.
 - Efetuar a instalação dos requirements do arquivo "requirements.txt".
-- Efetuar o start da aplicação executando o comando "python run.py"
+
+## Start
+
+- Ativar o ambiente virutal préviamente configurado.
+- Através do CMD, acessar a pasta test_python.
+- Efetuar o start do server através do CMD com o comando "python run.py"
 
 ## API
 
