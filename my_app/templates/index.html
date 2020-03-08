@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>	
+	<title>
+		API Form
+	</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/fonts/themify/themify-icons.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/fonts/elegant-font/html-css/style.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/vendor/slick/slick.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/vendor/lightbox2/css/lightbox.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+<!--===============================================================================================-->
+</head>
+<body class="animsition">
+	<div class="bg6 p-t-45 p-b-50 p-l-45 p-r-45 ">
+		<div class="flex-w p-b-90 " style="
+	padding-bottom: 0px;
+		">		
+			<h1 class="mx-auto">Calculador de Troco</h1><br><br>
+		</div>
+	</div>
+	<div class="page-header p-t-30 p-b-30" style="width: 50%;margin-left: 25%;text-align: -webkit-center;">		
+            <fieldset>
+                <div class="form-group">
+                  <label for="id_nome" class="col-md-3 control-label">Valor Total</label>
+                  
+                  <div class="col-md-9">
+                    <input type="number" placeholder="0.00" step="any" name="valor_total" class="p-3 p flex-c-m size9 bg1 bo-rad-15 m-text3" required="" id="valor_total">
+                    
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="id_email" class="col-md-3 control-label">Valor Pago</label>
+                  
+                  <div class="col-md-9">
+                    <input type="number" placeholder="0.00" step="0.01" name="valor_pago" class="p-3 p  size9 bg1 bo-rad-15 m-text3" required="" id="valor_pago">
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="id_messagem" class="col-md-3 control-label">Mensagem</label>
+
+                  <div class="col-md-9">
+                    <textarea name="messagem" cols="10" rows="18" class="form-control " id="id_messagem" readonly></textarea>
+                    
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <div class="col-md-9 col-md-offset-3">
+                    <button class="flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4 button-post-api" style="width: 50%">Enviar</button>
+                  </div>
+                </div>
+            </fieldset>
+		</div>        
+
+	<!-- Footer -->
+<footer class="bg6 p-t-45 p-b-189 p-l-45 p-r-45">
+		<div class="flex-w p-b-90" style="
+    padding-bottom: 0px;
+">		
+		</div>
+</footer>
+
+
+<!--===============================================================================================-->
+	<script type="text/javascript" src="/static/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="/static/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="/static/vendor/bootstrap/js/popper.js"></script>
+	<script type="text/javascript" src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="/static/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="/static/vendor/slick/slick.min.js"></script>
+	<script type="text/javascript" src="/static/js/slick-custom.js"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="/static/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="/static/vendor/lightbox2/js/lightbox.min.js"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="/static/vendor/sweetalert/sweetalert.min.js"></script>
+<!--==============Script de chamada da api com parametro escritos no formulario ===================-->
+	<script type="text/javascript">
+		$('.button-post-api').on('click', function(){
+			var valor_total = document.getElementById("valor_total").value
+			var valor_pago = document.getElementById("valor_pago").value
+			var xhr = new XMLHttpRequest();
+			var url = "http://localhost:5000/api/controle_troco";
+			xhr.open("POST", url, true);
+			xhr.setRequestHeader("Content-Type", "application/json");
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState === 4 && xhr.status === 200) {
+					document.getElementById("id_messagem").value = xhr.responseText.toString()
+				}
+				else{
+					document.getElementById("id_messagem").value = "Error"
+				}
+			};
+			var data = JSON.stringify({"valor_total": valor_total.toString(), "valor_pago": valor_pago.toString()});
+			xhr.send(data);
+		});
+	</script>
+
+<!--===============================================================================================-->
+	<script type="text/javascript" src="/static/vendor/parallax100/parallax100.js"></script>
+	<script type="text/javascript">
+        $('.parallax100').parallax100();
+	</script>
+<!--===============================================================================================-->
+	<script src="/static/js/main.js"></script>
+
+
+
+
+
+
+
+
+
